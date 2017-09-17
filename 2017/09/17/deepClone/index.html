@@ -89,14 +89,14 @@
 
 <meta name="description" content="js深浅拷贝一 了解深浅拷贝前提1.es5 数据类型分为2种1） 基本类型 Number,String,null,undefined,Boolean 2） 引用类型Object 2堆栈保存  1）基本类型以键值对的形式是保存在栈中，键是变量标识符，值是变量值     栈内存 header 2     标识符 变量值   标识符 变量值       2）引用类型数据，对象实际内容是保存在堆中，栈内存">
 <meta property="og:type" content="article">
-<meta property="og:title" content="js深浅拷贝">
-<meta property="og:url" content="http://yoursite.com/2017/09/14/deepClone/index.html">
+<meta property="og:title" content="离别之际,愿我们都能更好...">
+<meta property="og:url" content="http://yoursite.com/2017/09/17/deepClone/index.html">
 <meta property="og:site_name" content="离别之际,愿我们都能更好...">
 <meta property="og:description" content="js深浅拷贝一 了解深浅拷贝前提1.es5 数据类型分为2种1） 基本类型 Number,String,null,undefined,Boolean 2） 引用类型Object 2堆栈保存  1）基本类型以键值对的形式是保存在栈中，键是变量标识符，值是变量值     栈内存 header 2     标识符 变量值   标识符 变量值       2）引用类型数据，对象实际内容是保存在堆中，栈内存">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-14T13:35:42.437Z">
+<meta property="og:updated_time" content="2017-09-17T11:09:29.345Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="js深浅拷贝">
+<meta name="twitter:title" content="离别之际,愿我们都能更好...">
 <meta name="twitter:description" content="js深浅拷贝一 了解深浅拷贝前提1.es5 数据类型分为2种1） 基本类型 Number,String,null,undefined,Boolean 2） 引用类型Object 2堆栈保存  1）基本类型以键值对的形式是保存在栈中，键是变量标识符，值是变量值     栈内存 header 2     标识符 变量值   标识符 变量值       2）引用类型数据，对象实际内容是保存在堆中，栈内存">
 
 
@@ -125,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/09/14/deepClone/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/09/17/deepClone/"/>
 
 
 
 
 
-  <title> js深浅拷贝 | 离别之际,愿我们都能更好... </title>
+  <title>  | 离别之际,愿我们都能更好... </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -260,7 +260,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/14/deepClone/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/17/deepClone/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="范炯荣">
@@ -281,7 +281,7 @@
             
             
               
-                js深浅拷贝
+                
               
             
           </h1>
@@ -296,8 +296,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-14T21:31:01+08:00">
-                2017-09-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-17T19:10:10+08:00">
+                2017-09-17
               </time>
             
 
@@ -397,12 +397,23 @@
 </tr>
 </tbody>
 </table>
-<h3 id="2-深浅拷贝的基础实现"><a href="#2-深浅拷贝的基础实现" class="headerlink" title="2.深浅拷贝的基础实现"></a>2.深浅拷贝的基础实现</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">//对所有属性进行遍历，如果是基本类型，直接copy .否则递归遍历属性的子属性知道基本类型。</div><div class="line">function deepClone(obj)&#123;</div><div class="line">var deepObj;</div><div class="line">if(!obj||typeof obj!==&apos;object&apos;)&#123;</div><div class="line">	throw new Error(&apos;arguments error&apos;,&apos;error&apos;);</div><div class="line">&#125;</div><div class="line">obj.constructor===Array?deepObj=[]:deepObj=&#123;&#125;;</div><div class="line">for(key in obj)&#123;</div><div class="line">	//if(obj.hasOwnProperty(obj[key]))&#123;</div><div class="line">		if(obj[key]&amp;&amp;typeof obj[key]===&apos;object&apos;)&#123;</div><div class="line">			 deepObj[key]=deepClone(obj[key]);</div><div class="line">		&#125;</div><div class="line">		else&#123;</div><div class="line">			deepObj[key]=obj[key];</div><div class="line">		&#125;</div><div class="line">	//&#125;</div><div class="line">&#125;</div><div class="line">return deepObj;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">//测试</div><div class="line">function test()&#123;</div><div class="line">   var a=[1,2,&#123;&apos;name&apos;:&apos;jiongrong&apos;,age:20&#125;];</div><div class="line">   var b=deepClone(a);</div><div class="line">   b[2].name=&apos;jiongrong1&apos;;</div><div class="line">   var c=[1,2,&#123;people:&#123;name:&apos;yingfei&apos;&#125;,age:20&#125;];</div><div class="line">   var d=deepClone(c);</div><div class="line">   d[2].people.name=&apos;yingfei1&apos;;</div><div class="line">   console.log(a);</div><div class="line">   console.log(b);</div><div class="line">   console.log(c);</div><div class="line">   console.log(d);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="3-快速深拷贝的现成方法"><a href="#3-快速深拷贝的现成方法" class="headerlink" title="3.快速深拷贝的现成方法"></a>3.快速深拷贝的现成方法</h3><p>1）常用 JSON.parse() .JSON.stringify()</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var d=JSON.parse(JSON.stringify(c));</div></pre></td></tr></table></figure>
-<p>2) jquery 提供了extend 方法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">function run3()&#123;</div><div class="line"> 	var a=[1,2,&#123;&apos;name&apos;:&apos;jiongrong&apos;,age:20&#125;];</div><div class="line"> 	var b=$.extend(true,&#123;&#125;,a);  //true 是深拷贝  false 浅拷贝 数组拷贝完类型会不一样</div><div class="line"> 	b[2].name=&apos;jiongrong1&apos;;</div><div class="line"> 	console.log(a);</div><div class="line"> 	console.log(b);</div><div class="line"> 	var c=[1,2,&#123;&apos;name&apos;:&apos;jiongrong&apos;,age:20&#125;];</div><div class="line"> 	var d=$.extend(false,&#123;&#125;,c);</div><div class="line"> 	d[2].name=&apos;jiongrong1&apos;;</div><div class="line"> 	console.log(c);</div><div class="line">console.log(d);</div><div class="line"></div><div class="line"> &#125;</div></pre></td></tr></table></figure>
-<p><img src="" alt="image"></p>
+<h3 id="2-深浅拷贝的基础实现"><a href="#2-深浅拷贝的基础实现" class="headerlink" title="2.深浅拷贝的基础实现"></a>2.深浅拷贝的基础实现</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">/对所有属性进行遍历，如果是基本类型，直接copy .否则递归遍历属性的子属性知道基本类型。</div><div class="line">function deepClone(obj)&#123;</div><div class="line">    var deepObj;</div><div class="line">    if(!obj||typeof obj!==&apos;object&apos;)&#123;</div><div class="line">    	throw new Error(&apos;arguments error&apos;,&apos;error&apos;);</div><div class="line">    &#125;</div><div class="line">    Array.isArray(obj)?deepObj=[]:deepObj=&#123;&#125;;</div><div class="line">    //obj.constructor==Array?deepObj=[]:deepObj=&#123;&#125;;</div><div class="line">    for(key in obj)&#123;</div><div class="line">    	debugger;</div><div class="line">    	if(obj.hasOwnProperty(key))&#123;</div><div class="line">    		if(obj[key]&amp;&amp;typeof obj[key]===&apos;object&apos;)&#123;</div><div class="line">    			 deepObj[key]=deepClone(obj[key]);</div><div class="line">    		&#125;</div><div class="line">    		else&#123;</div><div class="line">    			deepObj[key]=obj[key];</div><div class="line">    		&#125;</div><div class="line">    	&#125;   </div><div class="line">    &#125;</div><div class="line">    return deepObj;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>//测试<br>function test(){<br>   var a=[1,2,{‘name’:’jiongrong’,age:20}];<br>   var b=deepClone(a);<br>   b[2].name=’jiongrong1’;<br>   var c=[1,2,{people:{name:’yingfei’},age:20}];<br>   var d=deepClone(c);<br>   d[2].people.name=’yingfei1’;<br>   console.log(a);<br>   console.log(b);<br>   console.log(c);<br>   console.log(d);<br>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">### 3.快速深拷贝的现成方法</div><div class="line">1）常用 JSON.parse() .JSON.stringify()</div></pre></td></tr></table></figure>
+<pre><code>var d=JSON.parse(JSON.stringify(c));
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">2) jquery 提供了extend 方法</div></pre></td></tr></table></figure>
+<pre><code>function run3(){
+  var a=[1,2,{&apos;name&apos;:&apos;jiongrong&apos;,age:20}];
+  var b=$.extend(true,{},a);  //true 是深拷贝  false 浅拷贝 数组拷贝完类型会不一样
+  b[2].name=&apos;jiongrong1&apos;;
+  console.log(a);
+  console.log(b);
+  var c=[1,2,{&apos;name&apos;:&apos;jiongrong&apos;,age:20}];
+  var d=$.extend(false,{},c);
+  d[2].name=&apos;jiongrong1&apos;;
+  console.log(c);
+console.log(d);
+</code></pre><p>  }<br>```<br><img src="" alt="image"></p>
 <p>写完，花时2个半小时 2017年9月12日</p>
 
       
@@ -553,7 +564,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#js深浅拷贝"><span class="nav-number">1.</span> <span class="nav-text">js深浅拷贝</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一-了解深浅拷贝前提"><span class="nav-number">1.1.</span> <span class="nav-text">一 了解深浅拷贝前提</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-es5-数据类型分为2种"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.es5 数据类型分为2种</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1）-基本类型"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">1） 基本类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2）-引用类型"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">2） 引用类型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2堆栈保存"><span class="nav-number">1.1.2.</span> <span class="nav-text">2堆栈保存</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二-深浅拷贝"><span class="nav-number">1.2.</span> <span class="nav-text">二 深浅拷贝</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-var-b-a-实际上是复制了一份a-的栈内存"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.var b= a ,实际上是复制了一份a 的栈内存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-深浅拷贝的基础实现"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.深浅拷贝的基础实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-快速深拷贝的现成方法"><span class="nav-number">1.2.3.</span> <span class="nav-text">3.快速深拷贝的现成方法</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#js深浅拷贝"><span class="nav-number">1.</span> <span class="nav-text">js深浅拷贝</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一-了解深浅拷贝前提"><span class="nav-number">1.1.</span> <span class="nav-text">一 了解深浅拷贝前提</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-es5-数据类型分为2种"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.es5 数据类型分为2种</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1）-基本类型"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">1） 基本类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2）-引用类型"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">2） 引用类型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2堆栈保存"><span class="nav-number">1.1.2.</span> <span class="nav-text">2堆栈保存</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二-深浅拷贝"><span class="nav-number">1.2.</span> <span class="nav-text">二 深浅拷贝</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-var-b-a-实际上是复制了一份a-的栈内存"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.var b= a ,实际上是复制了一份a 的栈内存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-深浅拷贝的基础实现"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.深浅拷贝的基础实现</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
